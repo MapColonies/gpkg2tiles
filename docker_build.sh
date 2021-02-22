@@ -1,0 +1,1 @@
+docker build --no-cache -t gpkg2tiles:latest .

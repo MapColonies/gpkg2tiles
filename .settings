@@ -1,0 +1,7 @@
+[AWS]
+AccessKeyId = minioadmin
+SecretAccessKey = minioadmin
+Endpoint = localhost:9000
+Https = NO
+VirtualHosting = FALSE
+Bucket = raster
