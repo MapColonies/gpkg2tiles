@@ -1,4 +1,4 @@
-# Foobar
+# gpkg2tiles
 
 This is a utility that wraps `gdal2tiles.py` with an easier CLI menu and configurations provider.
 
