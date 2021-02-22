@@ -43,7 +43,9 @@ else:
             print(script)
             for line in p.stdout.readlines():
                 print(line)
-            retval = p.wait()
-            print("return status code: %s" % retval)
         
+        retval = p.wait()
+        if debug == DEBUGGING_TRUE:
+            print("return status code: %s" % retval)
+
         print("Done zoom level %s" % zoom_level)
