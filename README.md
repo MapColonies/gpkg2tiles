@@ -11,7 +11,7 @@ NOTE: make sure to run the container with a valid `volume` so there will be no p
 
 ## Configurations
 
-There is a a `.settings` file in which you can configure whether you are working against an `S3` server of `FS`.
+There is a a `.settings` file in which you can configure whether you are working against an `S3` server or `FS`.
 
 Besides `S3` settings, the CLI allows you to change default values for your current usage of the `gdal2tiles` utility, such as: resampling method, number of processes for the run, profile etc. You can choose to run the script in debug mode as well.
 
