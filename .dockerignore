@@ -1,3 +1,5 @@
 __pycache__
 docker_build.sh
 docker_run.sh
+output
+script_output
