@@ -8,6 +8,6 @@ test -z $OUTPUT_DIRECTORY && echo "Please enter output directory location" && ex
 
 docker run --rm --name gpkg2tiles -i \
     -v $SETTINGS_FILE_LOCATION:/app/.settings \
-    -v $GPKG_FILE_LOCATION:/app/bluemar.gpkg \
+    -v $GPKG_FILE_LOCATION:/app/geo.gpkg \
     -v $OUTPUT_DIRECTORY:/app/output \
     gpkg2tiles
