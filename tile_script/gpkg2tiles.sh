@@ -51,6 +51,7 @@ OUTPUT_DIR=$(realpath $OUTPUT_DIRECTORY)
 GPKG_INFO_TABLE='gpkg_contents'
 GPKG_CONTENT=$(sqlite3 $GPKG "select * from $GPKG_INFO_TABLE")
 TMS="${TMS:-false}"
+RUN_AS_JOB="${RUN_AS_JOB:-false}"
 
 # Powers of 2 until 2^30
 export EXPONENTS=(
@@ -122,7 +123,13 @@ while [ $RESULTS_SIZE -gt 0 ]; do
     for row in ${BLOBS[@]}; do
         # Split row columns
         IFS='|' read -r -a ROW_ARR <<<$row
-        save_blob_as_image $OUTPUT_DIR "${ROW_ARR[@]}" #&
+        save_blob_as_image $OUTPUT_DIR "${ROW_ARR[@]}" &
+        # if [ "$RUN_AS_JOB" = true ]; then
+        #     echo true
+        #     save_blob_as_image $OUTPUT_DIR "${ROW_ARR[@]}" &
+        # else
+        #     save_blob_as_image $OUTPUT_DIR "${ROW_ARR[@]}"
+        # fi
     done
 
     END_TIME="$(date -u +%s)"
@@ -130,7 +137,7 @@ while [ $RESULTS_SIZE -gt 0 ]; do
     echo "Total of $ELAPSED seconds elapsed for process"
     ((OFFSET += BATCH_SIZE))
     RESULTS_SIZE=${#BLOBS[@]}
-    echo "Proccessed $(($OFFSET - ($BATCH_SIZE - $RESULTS_SIZE))) / $TILE_COUNT tiles"
+    echo "Proccessed $(($BATCH_SIZE - ($BATCH_SIZE - $RESULTS_SIZE))) / $TILE_COUNT tiles"
     BLOBS=($(sqlite3 $GPKG "select zoom_level, tile_column, tile_row, hex(tile_data) from $GPKG_TABLE_NAME where zoom_level between $MIN_ZOOM and $MAX_ZOOM limit $BATCH_SIZE offset $OFFSET")) # where zoom_level between $MIN_ZOOM and $MAX_ZOOM
 done
 
