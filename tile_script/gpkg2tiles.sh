@@ -141,6 +141,8 @@ while [ $RESULTS_SIZE -gt 0 ]; do
     BLOBS=($(sqlite3 $GPKG "select zoom_level, tile_column, tile_row, hex(tile_data) from $GPKG_TABLE_NAME where zoom_level between $MIN_ZOOM and $MAX_ZOOM limit $BATCH_SIZE offset $OFFSET")) # where zoom_level between $MIN_ZOOM and $MAX_ZOOM
 done
 
+wait
+
 END_TIME="$(date -u +%s)"
 ELAPSED="$(($END_TIME - $START_TIME))"
 echo "Total of $ELAPSED seconds elapsed for process"
