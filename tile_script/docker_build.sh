@@ -1,1 +1,1 @@
-docker build --no-cache -t gpkg2tilesscript:latest .
+docker build -t gpkg2tilesscript:latest .

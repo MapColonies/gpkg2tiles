@@ -1,3 +1,6 @@
 __pycache__
 output
 script_output
+gpkg
+*.zip
+*.txt
